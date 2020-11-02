@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Fire
+  - EnemyBomb
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - Player
   - PlayerBomb
   - Terrain
-  - 
-  - 
+  - EnemyBomb
+  - Enemy
   - 
   - 
   - 

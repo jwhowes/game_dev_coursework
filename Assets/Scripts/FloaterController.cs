@@ -17,10 +17,11 @@ public class FloaterController : MonoBehaviour{
     private List<Vector3> path;
     private float timer;
     void Start(){
+        target = PlayerManager.instance.player.transform;
         path =  new List<Vector3>();
-        timer = recomputePathTimer;
+        timer = Random.Range(0, recomputePathTimer);  // Timer begins at a random value to avoid all floaters recomputing at once
     }
-    void Update(){  // If I add a heap and reduce chaseDist maybe I can re add the timer (if it's not too slow I think it's better overall).
+    void Update(){  // Keep experimenting with the timer (may need to mess with onPointTolerance, chaseDist, etc. but I feel like it could work).
         if(path.Count > 0 && Vector3.Distance(transform.position, path[0]) <= onPointTolerance){
             path.RemoveAt(0);
         }

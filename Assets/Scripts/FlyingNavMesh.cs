@@ -1,16 +1,83 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class FlyingNavMesh : MonoBehaviour{
-    private class Node
-    {
+    private class Node{
         public Vector3 pos;  // The world position of the node
         public bool isObstacle;
 
         public float path_cost;
         public float dist_to_target;
         public Node prev;
+
+        public int heapIndex;
+    }
+    private class Heap{
+        public Node[] nodes;
+        private int length = 0;
+        public Heap(int maxLength){
+            nodes = new Node[maxLength];
+        }
+        public Node Dequeue(){
+            Node first = nodes[0];
+            length--;
+            nodes[0] = nodes[length];
+            nodes[0].heapIndex = 0;
+            Heapify(0);
+            return first;
+        }
+        private void Heapify(int v){
+            int smallest = -1;
+            while(smallest != v){
+                smallest = v;
+                if(2*v + 1 < length && Better(2*v + 1, v)){
+                    smallest = 2*v + 1;
+                }
+                if(2*v + 2 < length && Better(2*v + 2, v)){
+                    smallest = 2*v + 2;
+                }
+                if(smallest != v){
+                    nodes[smallest].heapIndex = v;
+                    nodes[v].heapIndex = smallest;
+                    Node temp = nodes[smallest];
+                    nodes[smallest] = nodes[v];
+                    nodes[v] = temp;
+                    v = smallest;
+                }
+            }
+        }
+        public void Enqueue(Node node){
+            node.heapIndex = length;
+            nodes[length] = node;
+            BubbleUp(length);
+            length++;
+        }
+        public bool Contains(Node node){
+            return node.heapIndex < length && Equals(nodes[node.heapIndex], node);
+        }
+        public int Count(){
+            return length;
+        }
+        public void Requeue(Node node){
+            BubbleUp(node.heapIndex);
+        }
+        private void BubbleUp(int v){
+            int parent = (v - 1)/2;
+            while(v > 0 && Better(v, parent)){
+                nodes[parent].heapIndex = v;
+                nodes[v].heapIndex = parent;
+                Node temp = nodes[parent];
+                nodes[parent] = nodes[v];
+                nodes[v] = temp;
+                v = parent;
+                parent = (v - 1)/2;
+            }
+        }
+        private bool Better(int i, int j){
+            return nodes[i].path_cost + nodes[i].dist_to_target < nodes[j].path_cost + nodes[j].dist_to_target || (nodes[i].path_cost + nodes[i].dist_to_target == nodes[j].path_cost + nodes[j].dist_to_target && nodes[i].dist_to_target < nodes[i].dist_to_target);
+        }
     }
     [SerializeField] private float width, height, depth;
     [SerializeField] private float voxelLength;
@@ -33,16 +100,13 @@ public class FlyingNavMesh : MonoBehaviour{
             }
         }
     }
-    public Vector3 VoxelToWorld(int x, int y, int z)
-    {
+    public Vector3 VoxelToWorld(int x, int y, int z){
         return (new Vector3(x, y, z) - new Vector3(numWidth, numHeight, numDepth)/2) * voxelLength/2;
     }
-    private Vector3 VoxelToWorld(Vector3 v)
-    {
+    private Vector3 VoxelToWorld(Vector3 v){
         return VoxelToWorld((int)v.x, (int)v.y, (int)v.z);
     }
-    public Vector3 WorldToVoxel(Vector3 worldPos)
-    {
+    public Vector3 WorldToVoxel(Vector3 worldPos){
         Vector3 ret = (worldPos * 2/voxelLength) + new Vector3(numWidth, numHeight, numDepth)/2;
         return new Vector3(Mathf.Floor(ret.x), Mathf.Floor(ret.y), Mathf.Floor(ret.z));
     }
@@ -50,11 +114,7 @@ public class FlyingNavMesh : MonoBehaviour{
         Vector3 v = WorldToVoxel(pos);
         return nodes[(int)v.x, (int)v.y, (int)v.z];
     }
-    public List<Vector3> GetPath(Vector3 start, Vector3 target){  // Improve with a heap
-        // Also use a data structure to store parents (that way I can remove values from fringe which stops them being searched again).
-        // Won't need prev list
-        // The data structure can probably just be a vector and a pointer to previous (in path)
-        // Should also experiment with storing everything in the data structure (so it's a vector, a path cost, a dist to target, and a pointer)
+    public List<Vector3> GetPath(Vector3 start, Vector3 target){
         for(int x = 0; x < numWidth; x++){
             for(int y = 0; y < numHeight; y++){
                 for(int z = 0; z < numDepth; z++){
@@ -64,22 +124,13 @@ public class FlyingNavMesh : MonoBehaviour{
                 }
             }
         }
-        List<Node> fringe = new List<Node>();  // TODO: Replace with a heap
+        Heap fringe = new Heap(numWidth*numHeight*numDepth);
         List<Vector3> path = new List<Vector3>();
-        path.Add(target);
         HashSet<Node> explored = new HashSet<Node>();
-        fringe.Add(WorldToNode(start));
-        int a = 0;
-        Node curr = null;
-        while(fringe.Count > 0){
-            int current = 0;
-            for(int i = 1; i < fringe.Count; i++){
-                if(fringe[i].path_cost + fringe[i].dist_to_target < fringe[current].path_cost + fringe[current].dist_to_target || (fringe[i].path_cost + fringe[i].dist_to_target == fringe[current].path_cost + fringe[current].dist_to_target && fringe[i].dist_to_target < fringe[i].dist_to_target)){
-                    current = i;
-                }
-            }
-            curr = fringe[current];
-            fringe.RemoveAt(current);
+        path.Add(target);
+        fringe.Enqueue(WorldToNode(start));
+        while(fringe.Count() > 0){
+            Node curr = fringe.Dequeue();
             explored.Add(curr);
             if(curr.dist_to_target < voxelLength){
                 while(curr != null){
@@ -91,12 +142,13 @@ public class FlyingNavMesh : MonoBehaviour{
             foreach(Node v in Neighbours(curr)){
                 if(!explored.Contains(v)){
                     if(fringe.Contains(v)){
-                        if(!explored.Contains(v) && curr.path_cost + Vector3.Distance(curr.pos, v.pos) < v.path_cost){
+                        if(curr.path_cost + Vector3.Distance(curr.pos, v.pos) < v.path_cost){
                             v.path_cost = curr.path_cost + Vector3.Distance(curr.pos, v.pos);
                             v.prev = curr;
+                            fringe.Requeue(v);
                         }
                     }else{
-                        fringe.Add(v);
+                        fringe.Enqueue(v);  // For some reason, when the enqueue is here it works but when it's after the assignment it doesn't
                         v.path_cost = curr.path_cost + Vector3.Distance(curr.pos, v.pos);
                         v.prev = curr;
                     }
