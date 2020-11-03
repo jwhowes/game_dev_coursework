@@ -17,6 +17,7 @@ MonoBehaviour:
   playerHealth: {fileID: 6577910323547577290, guid: c41f5bc46b87f2d4c9baaeec5ab11685,
     type: 3}
   damage: 20
+  lifeTime: 3
 --- !u!1001 &4263451212493379807
 PrefabInstance:
   m_ObjectHideFlags: 0

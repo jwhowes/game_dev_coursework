@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6304922072787542688}
   - component: {fileID: 2758292706718780991}
   m_Layer: 9
-  m_Name: Bomb
+  m_Name: PlayerBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
   blastRadius: 10
   force: 700
+  lifeTime: 3
 --- !u!1 &8851156100093794556
 GameObject:
   m_ObjectHideFlags: 0

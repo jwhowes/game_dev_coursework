@@ -7,7 +7,12 @@ public class EnemyBomb : MonoBehaviour{
     public float blastRadius = 100f;
     public CharacterHealth playerHealth;
     public float damage;
+    public float lifeTime = 3f;
 
+    private float countdown;
+    void Start(){
+        countdown = lifeTime;
+    }
     void OnCollisionEnter(Collision collision){
         Explode();
     }
@@ -20,5 +25,11 @@ public class EnemyBomb : MonoBehaviour{
             }
         }
         Destroy(gameObject);
+    }
+    void Update(){
+        if(countdown <= 0){
+            Destroy(gameObject);
+        }
+        countdown -= Time.deltaTime;
     }
 }

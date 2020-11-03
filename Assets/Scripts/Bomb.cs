@@ -7,11 +7,14 @@ public class Bomb : MonoBehaviour
     public GameObject explosionEffect;  // I should probably make my own explosion effect
     public float blastRadius = 10f;
     public float force = 700f;
+    public float lifeTime = 3f;
 
+    private float countdown;
+    void Start(){
+        countdown = lifeTime;
+    }
     void OnCollisionEnter(Collision collision){
-        if(collision.collider.tag != "Player"){
-            Explode();
-        }
+        Explode();
     }
     void Explode(){
         Instantiate(explosionEffect, transform.position, transform.rotation);
@@ -33,5 +36,11 @@ public class Bomb : MonoBehaviour
             
         }
         Destroy(gameObject);
+    }
+    void Update(){
+        if(countdown <= 0){
+            Destroy(gameObject);
+        }
+        countdown -= Time.deltaTime;
     }
 }

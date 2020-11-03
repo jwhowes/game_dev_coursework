@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7902084175941854697}
   - component: {fileID: 7902084175941854696}
   - component: {fileID: 7902084175941854699}
+  - component: {fileID: -5329786096551712647}
   m_Layer: 12
   m_Name: Floater
   m_TagString: Enemy
@@ -158,7 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f7d19e36e26a144b7dc247c2dde03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
   target: {fileID: 0}
   hitLayerMask:
     serializedVersion: 2
@@ -167,3 +167,26 @@ MonoBehaviour:
   shootForce: 2000
   blastRadius: 10
   damage: 20
+--- !u!114 &-5329786096551712647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7902084175941854698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf78f2bd39cb5c44b91dcde0e4fb170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1280
+  bomb: {fileID: 2120560816085685990, guid: 8459b68cc73effc4ead4d5955867e486, type: 3}
+  shootForce: 2000
+  blastRadius: 10
+  damage: 20
+  mainFireRate: 2.5
+  subFireRate: 0.2
+  subProjectiles: 3

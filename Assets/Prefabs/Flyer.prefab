@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4875691431065677562}
   - component: {fileID: 4875691431065677561}
   - component: {fileID: 4875691431065677567}
-  - component: {fileID: 3836500938876250984}
   - component: {fileID: 5164436799127092440}
+  - component: {fileID: 4400463329291924950}
   m_Layer: 12
   m_Name: Flyer
   m_TagString: Enemy
@@ -112,27 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 4875691431065677557}
---- !u!114 &3836500938876250984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4875691431065677556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f7d19e36e26a144b7dc247c2dde03b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 1.5
-  target: {fileID: 0}
-  hitLayerMask:
-    serializedVersion: 2
-    m_Bits: 1280
-  bomb: {fileID: 2120560816085685990, guid: 8459b68cc73effc4ead4d5955867e486, type: 3}
-  shootForce: 2000
-  blastRadius: 10
-  damage: 20
 --- !u!114 &5164436799127092440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +125,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 40
+--- !u!114 &4400463329291924950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875691431065677556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdbecc5e3645334fa6ec52da47e1387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1280
+  bomb: {fileID: 2120560816085685990, guid: 8459b68cc73effc4ead4d5955867e486, type: 3}
+  shootForce: 2000
+  blastRadius: 10
+  damage: 20
+  fireRate: 1.5
 --- !u!1 &4875691431311522396
 GameObject:
   m_ObjectHideFlags: 0

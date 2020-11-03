@@ -9,10 +9,6 @@ public class FireBomb : MonoBehaviour
     public float shootForce = 2000f;
     private float countdown;
 
-    void Start(){
-        Physics.IgnoreLayerCollision(8, 9);
-    }
-
     void Update(){
         if(Input.GetButton("Fire1") && countdown <= 0){
             countdown = fireRate;
