@@ -165,3 +165,5 @@ MonoBehaviour:
     m_Bits: 1280
   bomb: {fileID: 2120560816085685990, guid: 8459b68cc73effc4ead4d5955867e486, type: 3}
   shootForce: 2000
+  blastRadius: 10
+  damage: 20
