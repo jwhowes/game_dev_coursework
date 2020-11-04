@@ -8,7 +8,7 @@ public abstract class CharacterHealth : MonoBehaviour{
 
     protected float health;
 
-    void Start(){
+    public virtual void Start(){
         health = baseHealth;
     }
 

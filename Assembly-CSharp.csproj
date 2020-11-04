@@ -57,8 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CollisionManager.cs" />
-    <Compile Include="Assets\FloaterShoot.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
@@ -71,16 +69,19 @@
     <Compile Include="Assets\Scripts\BaseEnemyHealth.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\CharacterHealth.cs" />
+    <Compile Include="Assets\Scripts\CollisionManager.cs" />
     <Compile Include="Assets\Scripts\EnemyBomb.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EnemyShootBomb.cs" />
     <Compile Include="Assets\Scripts\FireBomb.cs" />
     <Compile Include="Assets\Scripts\FloaterController.cs" />
     <Compile Include="Assets\Scripts\FloaterHealth.cs" />
+    <Compile Include="Assets\Scripts\FloaterShoot.cs" />
     <Compile Include="Assets\Scripts\FlyerHealth.cs" />
     <Compile Include="Assets\Scripts\FlyerShoot.cs" />
     <Compile Include="Assets\Scripts\FlyingNavMesh.cs" />
     <Compile Include="Assets\Scripts\FlyingNavMeshOld.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Grapple.cs" />
     <Compile Include="Assets\Scripts\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />

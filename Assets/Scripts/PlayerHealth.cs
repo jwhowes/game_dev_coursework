@@ -7,10 +7,10 @@ public class PlayerHealth : CharacterHealth{
     private Vector3 spawnPoint = new Vector3(0f, 5f, 0f);
     override protected void Die(){
         health = baseHealth;
-        transform.position = spawnPoint;
+        transform.position = transform.TransformPoint(spawnPoint);
     }
-    public override void TakeDamage(float amount) {
+    public override void TakeDamage(float amount){
+        GameManager.instance.PlayerDamageAnim();
         base.TakeDamage(amount);
-        // Put some kind of red effect on the screen
     }
 }
