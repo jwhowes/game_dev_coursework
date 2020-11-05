@@ -9,10 +9,6 @@ public class Bomb : MonoBehaviour
     public float force = 700f;
     public float lifeTime = 3f;
 
-    private float countdown;
-    void Start(){
-        countdown = lifeTime;
-    }
     void OnCollisionEnter(Collision collision){
         Explode();
     }
@@ -38,9 +34,9 @@ public class Bomb : MonoBehaviour
         Destroy(gameObject);
     }
     void Update(){
-        if(countdown <= 0){
+        if(lifeTime <= 0){
             Destroy(gameObject);
         }
-        countdown -= Time.deltaTime;
+        lifeTime -= Time.deltaTime;
     }
 }

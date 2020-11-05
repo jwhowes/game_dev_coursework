@@ -9,14 +9,7 @@ public class EnemyBomb : MonoBehaviour{
     public float damage;
     public float lifeTime = 3f;
 
-    private float countdown;
-    void Start(){
-        countdown = lifeTime;
-    }
     void OnCollisionEnter(Collision collision){
-        Explode();
-    }
-    void Explode(){
         Instantiate(explosionEffect, transform.position, transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
         foreach(Collider nearbyObject in colliders){
@@ -27,9 +20,9 @@ public class EnemyBomb : MonoBehaviour{
         Destroy(gameObject);
     }
     void Update(){
-        if(countdown <= 0){
+        if(lifeTime <= 0){
             Destroy(gameObject);
         }
-        countdown -= Time.deltaTime;
+        lifeTime -= Time.deltaTime;
     }
 }

@@ -66,7 +66,10 @@
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ParticleSystemMultiplier.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\SmokeParticles.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\WaterHoseParticles.cs" />
+    <Compile Include="Assets\PoisonBomb.cs" />
+    <Compile Include="Assets\PoisonSpot.cs" />
     <Compile Include="Assets\Scripts\BaseEnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\BigWalkerHealth.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\CharacterHealth.cs" />
     <Compile Include="Assets\Scripts\CollisionManager.cs" />
@@ -88,6 +91,7 @@
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\ShootPoisonBomb.cs" />
     <None Include="Assets\Imported\ParticleSystems\ParticleSystemsGuidelines.txt" />
     <None Include="Assets\Imported\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\Imported\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
