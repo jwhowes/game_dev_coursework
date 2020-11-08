@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour{
     public Rigidbody rb;
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour{
 
     [System.NonSerialized] public bool isGrounded;
 
+    public Slider dashCharge;  // Currently doesn't work for more than one dash
+    
     private int dashes;
     private float dashCountdown;
     public void Launch() {
@@ -28,6 +31,8 @@ public class PlayerMovement : MonoBehaviour{
     void Start(){
         dashes = numDashes;
         dashCountdown = dashRecharge;
+        dashCharge.maxValue = dashRecharge;
+        dashCharge.value = dashRecharge;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -58,10 +63,12 @@ public class PlayerMovement : MonoBehaviour{
             rb.AddForce(0f, jumpForce, 0f);
         }
         if(dashCountdown <= 0 && dashes < numDashes){
+            dashCharge.value = dashRecharge;
             dashes++;
             dashCountdown = dashRecharge;
         }
         if(dashes < numDashes){
+            dashCharge.value = dashRecharge - dashCountdown;
             dashCountdown -= Time.deltaTime;
         }
         if(Input.GetKeyDown(KeyCode.LeftShift) && dashes > 0){
