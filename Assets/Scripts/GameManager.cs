@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour{
         Physics.IgnoreLayerCollision(8, 9);
     }
     public Animator playerDamage;
+
     public void PlayerDamageAnim(){
         playerDamage.Play("PlayerDamage");
     }

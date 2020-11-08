@@ -6,13 +6,19 @@ public class PlayerMovement : MonoBehaviour{
     public Rigidbody rb;
     public float speed = 200f;
     public float jumpForce = 1000f;  // Make jump higher (it's difficult to rocket jump side-to-side)
+    public float dashSpeed = 10000f;
+
+    public int numDashes = 2;
+    public float dashRecharge;
 
     public Transform groundCheck;
     public float groundDistance = 0.1f;
     public LayerMask groundMask;
 
-    private bool isGrounded;
+    [System.NonSerialized] public bool isGrounded;
 
+    private int dashes;
+    private float dashCountdown;
     public void Launch() {
         if(!isGrounded){
             rb.AddForce(transform.up * 200f);
@@ -20,6 +26,8 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     void Start(){
+        dashes = numDashes;
+        dashCountdown = dashRecharge;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -48,6 +56,18 @@ public class PlayerMovement : MonoBehaviour{
         rb.angularVelocity = Vector3.zero;
         if(Input.GetButtonDown("Jump") && isGrounded){
             rb.AddForce(0f, jumpForce, 0f);
+        }
+        if(dashCountdown <= 0 && dashes < numDashes){
+            dashes++;
+            dashCountdown = dashRecharge;
+        }
+        if(dashes < numDashes){
+            dashCountdown -= Time.deltaTime;
+        }
+        if(Input.GetKeyDown(KeyCode.LeftShift) && dashes > 0){
+            dashes--;
+            rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+            rb.AddForce((transform.right * x + transform.forward * z) * (isGrounded ? dashSpeed : dashSpeed / 3f), ForceMode.VelocityChange);  // Time.deltaTime not need as this happens once
         }
     }
 }

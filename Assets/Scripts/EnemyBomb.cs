@@ -9,6 +9,10 @@ public class EnemyBomb : MonoBehaviour{
     public float damage;
     public float lifeTime = 3f;
 
+    void Start(){
+        playerHealth = PlayerManager.instance.player.GetComponent<CharacterHealth>();
+    }
+
     void OnCollisionEnter(Collision collision){
         Instantiate(explosionEffect, transform.position, transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);

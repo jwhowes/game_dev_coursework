@@ -12,8 +12,14 @@ public class Grapple : MonoBehaviour
     private bool hit;
     private SpringJoint joint;
 
+    private bool hasGrapple;
+    private PlayerMovement pm;
+    void Start(){
+        pm = player.GetComponent<PlayerMovement>();
+    }
     void Update(){
-        if(Input.GetButtonDown("Fire2")){
+        hasGrapple = hasGrapple || pm.isGrounded;
+        if(Input.GetButtonDown("Fire2") && hasGrapple){
             Shoot();
         }
         if(Input.GetButton("Fire2") && hit){
@@ -27,6 +33,7 @@ public class Grapple : MonoBehaviour
     void Shoot(){
         RaycastHit hitInfo;  // Stores the result of the Raycast
         if(Physics.Raycast(transform.position, transform.forward, out hitInfo, range)){
+            hasGrapple = false;
             hit = true;
             line.SetPosition(1, hitInfo.point);
             joint = player.AddComponent<SpringJoint>();
