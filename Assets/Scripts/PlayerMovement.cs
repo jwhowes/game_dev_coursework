@@ -19,7 +19,8 @@ public class PlayerMovement : MonoBehaviour{
     [System.NonSerialized] public bool isGrounded;
 
     public Slider dashCharge;  // Currently doesn't work for more than one dash
-    
+    public Text dashText;
+
     private int dashes;
     private float dashCountdown;
     public void Launch() {
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     void Update(){
+        dashText.text = dashes.ToString();
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if(isGrounded){
             // As I'm using physics to control the character, I want a lot of drag when the character is touching the ground

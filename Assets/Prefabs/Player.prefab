@@ -213,12 +213,14 @@ MonoBehaviour:
   jumpForce: 200
   dashSpeed: 100
   numDashes: 2
-  dashRecharge: 1
+  dashRecharge: 2
   groundCheck: {fileID: 4230004702746517831}
   groundDistance: 0.1
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
+  dashCharge: {fileID: 0}
+  dashText: {fileID: 0}
 --- !u!114 &6577910323547577290
 MonoBehaviour:
   m_ObjectHideFlags: 0

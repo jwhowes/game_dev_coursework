@@ -15,7 +15,7 @@ MonoBehaviour:
   poisonSpot: {fileID: 8953075151997989554, guid: 657079597a65e7a419c3ce56580e5148,
     type: 3}
   blastRadius: 0
-  lifeTime: 3
+  lifeTime: 5
 --- !u!1001 &7354142874993346343
 PrefabInstance:
   m_ObjectHideFlags: 0

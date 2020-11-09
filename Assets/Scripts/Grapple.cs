@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grapple : MonoBehaviour
-{
+public class Grapple : MonoBehaviour{
     public float range = 20f;
     public LineRenderer line;
     public Rigidbody rb;
