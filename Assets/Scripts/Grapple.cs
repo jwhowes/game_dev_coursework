@@ -40,7 +40,7 @@ public class Grapple : MonoBehaviour{
             joint.connectedAnchor = hitInfo.point;
             joint.maxDistance = Vector3.Distance(player.transform.position, hitInfo.point) * 0.8f;
 
-            joint.spring = 2f;  // One idea for nerfing the hook would be to just make the range really short
+            joint.spring = 5f;  // One idea for nerfing the hook would be to just make the range really short
             joint.damper = 0f;  // Could also only make a few surfaces grapple-able (by adding a layer mask to the raycast) 
             joint.massScale = 1f;
 

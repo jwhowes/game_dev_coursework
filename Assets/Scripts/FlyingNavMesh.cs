@@ -99,6 +99,7 @@ public class FlyingNavMesh : MonoBehaviour{
                 }
             }
         }
+        Debug.Log(VoxelToWorld(0, 0, 0));
     }
     public Vector3 VoxelToWorld(int x, int y, int z){
         return (new Vector3(x, y, z) - new Vector3(numWidth, numHeight, numDepth)/2) * voxelLength/2;
