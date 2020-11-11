@@ -83,7 +83,6 @@
     <Compile Include="Assets\Scripts\FlyerHealth.cs" />
     <Compile Include="Assets\Scripts\FlyerShoot.cs" />
     <Compile Include="Assets\Scripts\FlyingNavMesh.cs" />
-    <Compile Include="Assets\Scripts\FlyingNavMeshOld.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Grapple.cs" />
     <Compile Include="Assets\Scripts\MeleeAttack.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Threading;
 
 public class FlyingNavMesh : MonoBehaviour{
     private class Node{
@@ -84,6 +85,7 @@ public class FlyingNavMesh : MonoBehaviour{
     private Node[,,] nodes;
     [SerializeField] private LayerMask obstacles;
     [System.NonSerialized] public int numWidth, numHeight, numDepth;
+    [SerializeField] LayerMask layerMask;
     
     void Start(){
         numWidth = (int)(width/voxelLength);
@@ -99,7 +101,6 @@ public class FlyingNavMesh : MonoBehaviour{
                 }
             }
         }
-        Debug.Log(VoxelToWorld(0, 0, 0));
     }
     public Vector3 VoxelToWorld(int x, int y, int z){
         return (new Vector3(x, y, z) - new Vector3(numWidth, numHeight, numDepth)/2) * voxelLength/2;
@@ -115,7 +116,13 @@ public class FlyingNavMesh : MonoBehaviour{
         Vector3 v = WorldToVoxel(pos);
         return nodes[(int)v.x, (int)v.y, (int)v.z];
     }
-    public List<Vector3> GetPath(Vector3 start, Vector3 target){
+    public void GetPath(FloaterController floater, Vector3 start, Vector3 target){
+        ThreadStart thread = delegate {  // Path calculations are performed in a separate thread to improve performance
+            floater.path = FindPath(start, target);
+        };
+        thread.Invoke();
+    }
+    List<Vector3> FindPath(Vector3 start, Vector3 target){
         for(int x = 0; x < numWidth; x++){
             for(int y = 0; y < numHeight; y++){
                 for(int z = 0; z < numDepth; z++){
@@ -128,12 +135,14 @@ public class FlyingNavMesh : MonoBehaviour{
         Heap fringe = new Heap(numWidth*numHeight*numDepth);
         List<Vector3> path = new List<Vector3>();
         HashSet<Node> explored = new HashSet<Node>();
+        RaycastHit hitInfo = new RaycastHit();
         path.Add(target);
         fringe.Enqueue(WorldToNode(start));
         while(fringe.Count() > 0){
             Node curr = fringe.Dequeue();
             explored.Add(curr);
-            if(curr.dist_to_target < voxelLength){
+            if(curr.dist_to_target < voxelLength || (Physics.Raycast(curr.pos, (target - curr.pos).normalized, out hitInfo, layerMask) && hitInfo.collider.tag == "Player")){
+                // If current point is close enough to target or can see target from current point then return the path. Results in potentially inoptimal paths but executes faster
                 while(curr != null){
                     path.Insert(0, curr.pos);
                     curr = curr.prev;

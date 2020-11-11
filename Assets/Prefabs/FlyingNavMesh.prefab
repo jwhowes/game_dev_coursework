@@ -50,3 +50,6 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 1024
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1280
