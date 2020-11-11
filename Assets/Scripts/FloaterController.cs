@@ -31,7 +31,6 @@ public class FloaterController : MonoBehaviour{
             path.RemoveAt(0);
         }
         if(path.Count > 0){
-            Debug.Log(Vector3.Distance(transform.position, path[0]));
             // Potentially remove target from path and say if path is empty go towards target (so it doesn't go to player's old pos)
             // This would probably only make a difference if the timer is used (as is, if path is empty then we generate a new one immediately)
             Seek(path[0]);
