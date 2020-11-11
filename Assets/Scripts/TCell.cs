@@ -29,7 +29,7 @@ public class TCell : MonoBehaviour{
         hitLayerMask = LayerMask.GetMask("Terrain") | targetLayerMask;
     }
     
-    void Update(){
+    void FixedUpdate(){
         switch(state){
             case State.Scanning: {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, range, targetLayerMask);
