@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7902084175941854676}
   - component: {fileID: 7658541628865004398}
   - component: {fileID: 7902084175697200351}
-  - component: {fileID: 7902084175941854697}
   - component: {fileID: 7902084175941854696}
   - component: {fileID: 7902084175941854699}
   - component: {fileID: -5329786096551712647}
+  - component: {fileID: 8869173573085103264}
   m_Layer: 12
   m_Name: Floater
   m_TagString: Enemy
@@ -75,19 +75,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7902084175941854697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7902084175941854698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8d1ead9cbe97674fb92184eb7324daf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseHealth: 50
 --- !u!114 &7902084175941854696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +137,21 @@ MonoBehaviour:
   mainFireRate: 2.5
   subFireRate: 0.2
   subProjectiles: 3
+--- !u!114 &8869173573085103264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7902084175941854698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4761e2de7e4da47a7f4512452ebe69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 50
+  drop: {fileID: 2209255118275310662, guid: eea4f142ca36d4e4fb95a215e0120379, type: 3}
+  maxDrops: 5
 --- !u!1001 &4853506211246133399
 PrefabInstance:
   m_ObjectHideFlags: 0

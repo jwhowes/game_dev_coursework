@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5088096654356929444}
   - component: {fileID: 5088096654356929445}
   - component: {fileID: 5088096654356929446}
-  - component: {fileID: 5088096654356929439}
   - component: {fileID: 5452541441328796853}
+  - component: {fileID: -1985280086731521739}
   m_Layer: 12
   m_Name: BigWalker
   m_TagString: Enemy
@@ -112,19 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 0}
---- !u!114 &5088096654356929439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5088096654356929447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e602f78a344a6c46b72b7453e0ca44e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseHealth: 45
 --- !u!114 &5452541441328796853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +132,21 @@ MonoBehaviour:
   shootForce: 2000
   blastRadius: 12
   fireRate: 3
+--- !u!114 &-1985280086731521739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088096654356929447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4761e2de7e4da47a7f4512452ebe69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 45
+  drop: {fileID: 2209255118275310662, guid: eea4f142ca36d4e4fb95a215e0120379, type: 3}
+  maxDrops: 3
 --- !u!1001 &1004371165382018912
 PrefabInstance:
   m_ObjectHideFlags: 0

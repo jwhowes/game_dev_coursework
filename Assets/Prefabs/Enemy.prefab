@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2974326216504191826}
   - component: {fileID: 2974326216504191837}
   - component: {fileID: 2974326216504191836}
-  - component: {fileID: 2974326216504191825}
   - component: {fileID: 1439952237276711540}
+  - component: {fileID: 2489838228535995737}
   m_Layer: 12
   m_Name: Enemy
   m_TagString: Enemy
@@ -103,21 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4230004702491921477, guid: c41f5bc46b87f2d4c9baaeec5ab11685, type: 3}
   agent: {fileID: 0}
---- !u!114 &2974326216504191825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2974326216504191839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1afd405ed969578489329299b1d76411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseHealth: 20
-  drop: {fileID: 2209255118275310662, guid: eea4f142ca36d4e4fb95a215e0120379, type: 3}
-  maxDrops: 5
 --- !u!114 &1439952237276711540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +119,21 @@ MonoBehaviour:
   damage: 5
   damageTimer: 0.5
   damageDistance: 2.2
+--- !u!114 &2489838228535995737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2974326216504191839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4761e2de7e4da47a7f4512452ebe69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 20
+  drop: {fileID: 2209255118275310662, guid: eea4f142ca36d4e4fb95a215e0120379, type: 3}
+  maxDrops: 1
 --- !u!1001 &7438711915728795532
 PrefabInstance:
   m_ObjectHideFlags: 0

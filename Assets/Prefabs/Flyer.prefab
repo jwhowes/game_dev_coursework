@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4875691431065677567}
   - component: {fileID: 5164436799127092440}
   - component: {fileID: 4400463329291924950}
+  - component: {fileID: -1370933340159167937}
   m_Layer: 12
   m_Name: Flyer
   m_TagString: Enemy
@@ -145,6 +146,21 @@ MonoBehaviour:
   blastRadius: 10
   damage: 20
   fireRate: 1.5
+--- !u!114 &-1370933340159167937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875691431065677556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4761e2de7e4da47a7f4512452ebe69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 40
+  drop: {fileID: 2209255118275310662, guid: eea4f142ca36d4e4fb95a215e0120379, type: 3}
+  maxDrops: 2
 --- !u!1001 &1498566748673167661
 PrefabInstance:
   m_ObjectHideFlags: 0
