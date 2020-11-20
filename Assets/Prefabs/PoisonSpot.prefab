@@ -4834,7 +4834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2665139637170697572
 Transform:
   m_ObjectHideFlags: 0
@@ -14414,6 +14414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8953075151997989553}
   - component: {fileID: 6055575738472478665}
+  - component: {fileID: 3223491604179182150}
   m_Layer: 0
   m_Name: PoisonSpot
   m_TagString: Untagged
@@ -14454,3 +14455,16 @@ MonoBehaviour:
   lifeTime: 5
   poisonEffect: {fileID: 0}
   target: {fileID: 0}
+--- !u!135 &3223491604179182150
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953075151997989554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 8
+  m_Center: {x: 0, y: 0, z: 0}

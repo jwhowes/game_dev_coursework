@@ -10,7 +10,6 @@ public class PoisonBomb : MonoBehaviour{
     void OnCollisionEnter(Collision collision){
         // Play a different explosion effect (a more green one probably
         PoisonSpot spot = Instantiate(poisonSpot, transform.position, Quaternion.Euler(Vector3.up)).GetComponent<PoisonSpot>();
-        spot.radius = blastRadius;
         Destroy(gameObject);
     }
     void Update(){

@@ -15,7 +15,7 @@ public class PlayerHealth : CharacterHealth{
     }
     override protected void Die(){
         health = baseHealth;
-        transform.position = transform.TransformPoint(spawnPoint);
+        transform.position = spawnPoint;
     }
     public bool Heal(float amount){
         if(health < baseHealth){

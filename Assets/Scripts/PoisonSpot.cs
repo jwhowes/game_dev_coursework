@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PoisonSpot : MonoBehaviour{
-    public float radius;
     public float lifeTime = 3f;
     public GameObject poisonEffect;
     public Transform target;
@@ -15,11 +14,14 @@ public class PoisonSpot : MonoBehaviour{
         target = PlayerManager.instance.player.transform;
         targetHealth = target.GetComponent<CharacterHealth>();
     }
+    
+    void OnTriggerStay(Collider other){
+        if(other.tag == "Player"){
+            targetHealth.TakeDamage(Time.deltaTime * 5f);
+        }
+    }
 
     void Update(){
-        if(Vector3.Distance(transform.position, target.position) <= radius){
-            targetHealth.TakeDamage(Time.deltaTime);
-        }
         if(lifeTime <= 0){
             // Destroy(poisonEffectInstance);
             Destroy(gameObject);

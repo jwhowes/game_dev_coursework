@@ -22,9 +22,8 @@ public class FloaterController : MonoBehaviour{
         path =  new List<Vector3>();
         timer = Random.Range(0, recomputePathTimer);  // Timer begins at a random value to avoid all floaters recomputing at once
     }
-    void Seek(Vector3 point){
-        Vector3 steering = ((point - rb.position).normalized - (transform.position + rb.velocity).normalized).normalized * speed;  // Doesn't really work
-        rb.AddForce((path[0] - transform.position).normalized * speed);
+    void OnTriggerStay(Collider other){
+        rb.AddForce((transform.position - other.ClosestPoint(transform.position)).normalized * speed, ForceMode.Acceleration);
     }
     void FixedUpdate(){  // Keep experimenting with the timer (may need to mess with onPointTolerance, chaseDist, etc. but I feel like it could work).
         if(path.Count > 0 && Vector3.Distance(transform.position, path[0]) <= onPointTolerance){
@@ -33,8 +32,9 @@ public class FloaterController : MonoBehaviour{
         if(path.Count > 0){
             // Potentially remove target from path and say if path is empty go towards target (so it doesn't go to player's old pos)
             // This would probably only make a difference if the timer is used (as is, if path is empty then we generate a new one immediately)
-            Seek(path[0]);
-        }else if(Vector3.Distance(transform.position, target.position) <= chaseDist){
+            rb.AddForce((path[0] - transform.position).normalized * speed);
+        }
+        else if(Vector3.Distance(transform.position, target.position) <= chaseDist){
             navmesh.GetPath(this, transform.position, target.position);
         }
         /*if(timer <= 0 && Vector3.Distance(transform.position, target.position) <= chaseDist){
