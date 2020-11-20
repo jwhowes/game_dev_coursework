@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour{
         if(isGrounded){
             // As I'm using physics to control the character, I want a lot of drag when the character is touching the ground
             rb.drag = 7f;
+
         }else{
             // However, when the character's in the air I want to reduce drag so they float smoothly
             rb.drag = 0f;
@@ -56,7 +57,7 @@ public class PlayerMovement : MonoBehaviour{
             z = z / Mathf.Abs(z);
         }
         if(isGrounded){
-            rb.AddForce((transform.right * x + transform.forward * z) * speed * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce((transform.right * x + transform.forward * z) * speed * Time.deltaTime, ForceMode.Impulse);
         }else{
             rb.AddForce((transform.right * x + transform.forward * z) * speed * 7 * Time.deltaTime);
         }

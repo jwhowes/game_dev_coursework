@@ -17,6 +17,14 @@ public class PlayerHealth : CharacterHealth{
         health = baseHealth;
         transform.position = transform.TransformPoint(spawnPoint);
     }
+    public bool Heal(float amount){
+        if(health < baseHealth){
+            health = (health + amount <= baseHealth) ? health + amount : baseHealth;
+            healthBar.value = health;
+            return true;
+        }
+        return false;
+    }
     public override void TakeDamage(float amount){
         GameManager.instance.PlayerDamageAnim();
         base.TakeDamage(amount);

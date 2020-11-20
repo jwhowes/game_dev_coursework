@@ -116,6 +116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 20
+  drop: {fileID: 2209255118275310662, guid: eea4f142ca36d4e4fb95a215e0120379, type: 3}
+  maxDrops: 5
 --- !u!114 &1439952237276711540
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        agent.SetDestination(new Vector3(target.position.x, transform.position.y, target.position.z));  // A crude way to make them chase the player even when the player's in the air
+        agent.SetDestination(new Vector3(target.position.x, target.position.y, target.position.z));  // A crude way to make them chase the player even when the player's in the air
         if(Vector3.Distance(target.position, transform.position) <= agent.stoppingDistance){
             FaceTarget();
         }
