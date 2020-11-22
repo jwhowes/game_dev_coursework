@@ -6,14 +6,23 @@ using UnityEngine.UI;
 public class PlayerHealth : CharacterHealth{
     // An implementation of the abstract CharacterHealth class for the player
     public Slider healthBar;
-    
-    private Vector3 spawnPoint = new Vector3(0f, 5f, 0f);
+
+    public Vector3 spawnPoint = new Vector3(0f, 5f, 0f);
+
+    public BattleArena arena;
+
     public override void Start(){
+        if(arena != null){
+            arena.Activate();
+        }
         base.Start();
         healthBar.maxValue = baseHealth;
         healthBar.value = baseHealth;
     }
-    override protected void Die(){
+    override public void Die(){
+        if(arena != null){
+            arena.Activate();
+        }
         health = baseHealth;
         transform.position = spawnPoint;
     }

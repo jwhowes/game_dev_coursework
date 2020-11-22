@@ -12,7 +12,7 @@ public abstract class CharacterHealth : MonoBehaviour{
         health = baseHealth;
     }
 
-    protected abstract void Die();
+    public abstract void Die();
 
     public virtual void TakeDamage(float amount){
         health -= amount;

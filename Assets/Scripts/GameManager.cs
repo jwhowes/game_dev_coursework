@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour{
         _instance = this;
         Physics.IgnoreLayerCollision(11, 12);
         Physics.IgnoreLayerCollision(8, 9);
+        Physics.IgnoreLayerCollision(13, 8);
+        Physics.IgnoreLayerCollision(13, 12);
         Physics.IgnoreLayerCollision(13, 13);
     }
     public Animator playerDamage;
