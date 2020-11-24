@@ -27,7 +27,7 @@ public class Bomb : MonoBehaviour
             }
             if(nearbyObject.tag == "Enemy"){
                 // Need to rework damage system (direct hits should do more regardless of enemy model size)
-                //nearbyObject.GetComponent<CharacterHealth>().TakeDamage(30/Vector3.Distance(nearbyObject.transform.position, transform.position));
+                nearbyObject.GetComponent<CharacterHealth>().TakeDamage(30/Vector3.Distance(nearbyObject.transform.position, transform.position));
             }
             
         }

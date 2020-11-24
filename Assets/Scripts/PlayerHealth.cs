@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : CharacterHealth{
     // An implementation of the abstract CharacterHealth class for the player
     public Slider healthBar;
-
     public Vector3 spawnPoint = new Vector3(0f, 5f, 0f);
-
     public BattleArena arena;
 
     public override void Start(){
@@ -20,10 +18,14 @@ public class PlayerHealth : CharacterHealth{
         healthBar.value = baseHealth;
     }
     override public void Die(){
-        if(arena != null){
+        GameManager.instance.PlayerDeath();
+    }
+    public void Respawn(){
+        if (arena != null){
             arena.Activate();
         }
         health = baseHealth;
+        healthBar.value = health;
         transform.position = spawnPoint;
     }
     public bool Heal(float amount){
