@@ -57,9 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BattleArena.cs" />
-    <Compile Include="Assets\CheckPoint.cs" />
-    <Compile Include="Assets\EnemySpawnPoint.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
@@ -69,14 +66,16 @@
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ParticleSystemMultiplier.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\SmokeParticles.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\WaterHoseParticles.cs" />
-    <Compile Include="Assets\KillBox.cs" />
+    <Compile Include="Assets\Scripts\BattleArena.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\CharacterHealth.cs" />
+    <Compile Include="Assets\Scripts\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\CollisionManager.cs" />
     <Compile Include="Assets\Scripts\EnemyBomb.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\EnemyShootBomb.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawnPoint.cs" />
     <Compile Include="Assets\Scripts\FireBomb.cs" />
     <Compile Include="Assets\Scripts\FloaterController.cs" />
     <Compile Include="Assets\Scripts\FloaterShoot.cs" />
@@ -85,6 +84,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Grapple.cs" />
     <Compile Include="Assets\Scripts\HealthPickup.cs" />
+    <Compile Include="Assets\Scripts\KillBox.cs" />
     <Compile Include="Assets\Scripts\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\PoisonSpot.cs" />
     <Compile Include="Assets\Scripts\ShootPoisonBomb.cs" />
     <Compile Include="Assets\Scripts\TCell.cs" />
+    <Compile Include="Assets\SmallFloaterController.cs" />
     <None Include="Assets\Imported\ParticleSystems\ParticleSystemsGuidelines.txt" />
     <None Include="Assets\Imported\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\Imported\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
