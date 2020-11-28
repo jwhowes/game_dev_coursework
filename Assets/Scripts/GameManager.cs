@@ -18,12 +18,17 @@ public class GameManager : MonoBehaviour{
         Physics.IgnoreLayerCollision(13, 12);
         Physics.IgnoreLayerCollision(13, 13);
         playerDead = false;
+        if(arena != null){
+            arena.Activate();
+        }
     }
 
     public Animator playerDamage;
     public void PlayerDamageAnim(){
         playerDamage.Play("PlayerDamage");
     }
+
+    public BattleArena arena;
 
     public GameObject playerDeadUI;
     bool playerDead;
@@ -32,13 +37,25 @@ public class GameManager : MonoBehaviour{
         playerDead = true;
         playerDeadUI.SetActive(true);
     }
+
+    public bool AnyAlive(){
+        return GameObject.FindGameObjectsWithTag("Enemy").Length == 0;
+    }
+
     void Update() {
         if(Input.GetKeyDown(KeyCode.Return) && playerDead) {
             Time.timeScale = 1;
             playerDead = false;
             playerDeadUI.SetActive(false);
             PlayerManager.instance.player.GetComponent<PlayerHealth>().Respawn();
+            if(arena != null){
+                arena.Activate();
+            }
             // Should probably also destroy drops
+        }
+        if(arena != null && GameObject.FindGameObjectsWithTag("Enemy").Length == 0){
+            Debug.Log("They're all dead!");
+            arena = null;
         }
     }
 }

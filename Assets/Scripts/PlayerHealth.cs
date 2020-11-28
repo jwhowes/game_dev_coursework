@@ -7,12 +7,8 @@ public class PlayerHealth : CharacterHealth{
     // An implementation of the abstract CharacterHealth class for the player
     public Slider healthBar;
     public Vector3 spawnPoint = new Vector3(0f, 5f, 0f);
-    public BattleArena arena;
 
     public override void Start(){
-        if(arena != null){
-            arena.Activate();
-        }
         base.Start();
         healthBar.maxValue = baseHealth;
         healthBar.value = baseHealth;
@@ -21,9 +17,6 @@ public class PlayerHealth : CharacterHealth{
         GameManager.instance.PlayerDeath();
     }
     public void Respawn(){
-        if (arena != null){
-            arena.Activate();
-        }
         health = baseHealth;
         healthBar.value = health;
         transform.position = spawnPoint;
