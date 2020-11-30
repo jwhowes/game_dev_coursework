@@ -192,6 +192,10 @@ MonoBehaviour:
   mainFireRate: 2.5
   subFireRate: 0.2
   subProjectiles: 3
+  spawnMaxTimer: 5
+  spawnMinTimer: 2.5
+  smallFloater: {fileID: 8657794755142946109, guid: 58d099588f2b069479caf93b52edbe67,
+    type: 3}
 --- !u!114 &5771591059771130863
 MonoBehaviour:
   m_ObjectHideFlags: 0
