@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour{
         dashCharge.maxValue = dashRecharge;
         dashCharge.value = dashRecharge;
         rb = GetComponent<Rigidbody>();
+        PlayerManager.instance.player = gameObject;
     }
 
     void Update(){

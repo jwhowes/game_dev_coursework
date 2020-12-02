@@ -21,7 +21,11 @@ public class GameManager : MonoBehaviour{
         if(arena != null){
             arena.Activate();
         }
+        difficulty = 1;
+        DontDestroyOnLoad(this.gameObject);
     }
+
+    public int difficulty;
 
     public Animator playerDamage;
     public void PlayerDamageAnim(){

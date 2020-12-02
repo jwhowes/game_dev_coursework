@@ -1,0 +1,21 @@
+Advanced interaction:
+	- Physics (push enemies around as well as yourself with the rocket launcher and grapple hook)
+	- Implemented A* search
+	- TCells implement object tracking
+	- Steering behaviour:
+		- A* search
+		- Collision avoidance
+		- Navmesh
+	- Also I may add the launchpads
+
+Use of multimedia:
+	- Imported models and animations (animations for walkers)
+	- Particle effects, i.e. complex animations involving billboarding etc.
+	- Imported textures
+	- Text for story telling
+	- If I manage to get the animations working for my bacteriophage then I'm definitely good for this one
+	- Unity terrain objects
+		- Texture mapping, terrain deformation etc.
+		- Could add foliage and do some billboaring
+	- Self-made complex scene objects (with a the unity library thingy)
+		- i.e. stairs, arches, whatever else I do
