@@ -126,7 +126,7 @@ MonoBehaviour:
   target: {fileID: 0}
   hitLayerMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 40960
   bomb: {fileID: 2120560816085685990, guid: 8459b68cc73effc4ead4d5955867e486, type: 3}
   shootForce: 2000
   blastRadius: 10

@@ -67,7 +67,6 @@ GameObject:
   - component: {fileID: 3390801403516155797}
   - component: {fileID: 5177799138281047244}
   - component: {fileID: 5231586915263235917}
-  - component: {fileID: 5907260877196346927}
   - component: {fileID: 6808603523850588921}
   - component: {fileID: 5771591059771130863}
   - component: {fileID: 7788825815956054321}
@@ -149,26 +148,6 @@ MonoBehaviour:
   recomputePathTimer: 5
   onPointTolerance: 6
   navmesh: {fileID: 0}
---- !u!114 &5907260877196346927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8029469086300367684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f7d19e36e26a144b7dc247c2dde03b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  hitLayerMask:
-    serializedVersion: 2
-    m_Bits: 1280
-  bomb: {fileID: 2120560816085685990, guid: 8459b68cc73effc4ead4d5955867e486, type: 3}
-  shootForce: 2000
-  blastRadius: 10
-  damage: 20
 --- !u!114 &6808603523850588921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +163,7 @@ MonoBehaviour:
   target: {fileID: 0}
   hitLayerMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 40960
   bomb: {fileID: 2120560816085685990, guid: 8459b68cc73effc4ead4d5955867e486, type: 3}
   shootForce: 2000
   blastRadius: 10

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4444178748182236064}
   - component: {fileID: 202387764708311225}
   - component: {fileID: 6832640328623936616}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: HealthPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6163045854080845586}
   - component: {fileID: 8491274702471413684}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

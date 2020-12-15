@@ -49,7 +49,7 @@ MonoBehaviour:
   voxelLength: 25
   obstacles:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 32768
   layerMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 40960

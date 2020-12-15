@@ -12,11 +12,11 @@ public class GameManager : MonoBehaviour{
     }
     private void Awake(){
         _instance = this;
+        Physics.IgnoreLayerCollision(13, 16);
         Physics.IgnoreLayerCollision(11, 12);
-        Physics.IgnoreLayerCollision(8, 9);
-        Physics.IgnoreLayerCollision(13, 8);
-        Physics.IgnoreLayerCollision(13, 12);
-        Physics.IgnoreLayerCollision(13, 13);
+        Physics.IgnoreLayerCollision(14, 16);
+        Physics.IgnoreLayerCollision(14, 12);
+        Physics.IgnoreLayerCollision(14, 11);
         playerDead = false;
         if(arena != null){
             arena.Activate();
