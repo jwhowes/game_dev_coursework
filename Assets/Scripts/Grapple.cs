@@ -7,6 +7,7 @@ public class Grapple : MonoBehaviour{
     public LineRenderer line;
     public Rigidbody rb;
     public GameObject player;
+    public LayerMask layerMask;
 
     private bool hit;
     private SpringJoint joint;
@@ -31,7 +32,7 @@ public class Grapple : MonoBehaviour{
     }
     void Shoot(){
         RaycastHit hitInfo;  // Stores the result of the Raycast
-        if(Physics.Raycast(transform.position, transform.forward, out hitInfo, range)){
+        if(Physics.Raycast(transform.position, transform.forward, out hitInfo, range, layerMask)){
             hasGrapple = false;
             hit = true;
             line.SetPosition(1, hitInfo.point);

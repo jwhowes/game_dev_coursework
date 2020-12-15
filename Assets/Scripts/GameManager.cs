@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour{
     public BattleArena arena;
 
     public GameObject playerDeadUI;
+    public GameObject HUD;
+    public GameObject DialogueCanvas;
+
     bool playerDead;
     public void PlayerDeath(){
         Time.timeScale = 0;

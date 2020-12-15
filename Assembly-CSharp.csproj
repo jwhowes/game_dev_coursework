@@ -57,6 +57,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Dialogue.cs" />
+    <Compile Include="Assets\DialogueManager.cs" />
+    <Compile Include="Assets\DialogueTrigger.cs" />
+    <Compile Include="Assets\DialogueUI.cs" />
     <Compile Include="Assets\HUD.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\WaterHoseParticles.cs" />
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Options.cs" />
+    <Compile Include="Assets\RotateExclamation.cs" />
     <Compile Include="Assets\Scripts\BattleArena.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\CharacterHealth.cs" />

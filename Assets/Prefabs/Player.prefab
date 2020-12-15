@@ -235,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 100
   healthBar: {fileID: 0}
+  spawnPoint: {x: 0, y: 5, z: 0}
 --- !u!54 &4230004703437379355
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -396,6 +397,9 @@ MonoBehaviour:
   line: {fileID: 4230004702797053961}
   rb: {fileID: 4230004703437379355}
   player: {fileID: 4230004703437379364}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &4458985181414099407
 GameObject:
   m_ObjectHideFlags: 0
