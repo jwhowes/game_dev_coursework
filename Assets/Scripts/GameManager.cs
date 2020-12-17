@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour{
         }
         if(arena != null && GameObject.FindGameObjectsWithTag("Enemy").Length == 0){
             Debug.Log("They're all dead!");
+            arena.dead = true;
             arena = null;
         }
     }
