@@ -20,6 +20,7 @@ public class PlayerHealth : CharacterHealth{
         health = baseHealth;
         healthBar.value = health;
         transform.position = spawnPoint;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
     public bool Heal(float amount){
         if(health < baseHealth){
