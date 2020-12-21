@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour{
     [System.NonSerialized] public bool isGrounded;
 
     public Slider dashCharge;  // Currently doesn't work for more than one dash
-    public Text dashText;
+    public TMPro.TextMeshProUGUI dashText;
 
     private int dashes;
     private float dashCountdown;

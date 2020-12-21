@@ -29,6 +29,7 @@ public class TCell : MonoBehaviour{
         lockonCountdown = lockonTime;
         coolDownCountdown = coolDown;
         hitLayerMask = LayerMask.GetMask("Terrain") | targetLayerMask;
+        line.SetPosition(0, transform.position);
     }
     
     void FixedUpdate(){
