@@ -35,7 +35,7 @@ public class FloaterController : MonoBehaviour{
         return Physics.Raycast(new Ray(transform.position, (target.position - transform.position).normalized), out hitInfo, 500f, layerMask) && hitInfo.collider.tag == "Player";
     }
     void FixedUpdate(){  // Keep experimenting with the timer (may need to mess with onPointTolerance, chaseDist, etc. but I feel like it could work).
-        if (CanSeeTarget()){
+        if (CanSeeTarget() || navmesh == null){
             path = new List<Vector3>();
             rb.AddForce((target.position - transform.position).normalized * speed);
         }else{

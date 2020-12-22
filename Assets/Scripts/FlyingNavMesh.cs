@@ -230,4 +230,9 @@ public class FlyingNavMesh : MonoBehaviour{
             other.GetComponent<FloaterController>().navmesh = this;
         }
     }
+    void OnTriggerExit(Collider other){
+        if (other.GetComponent<FloaterController>() != null){
+            other.GetComponent<FloaterController>().navmesh = null;
+        }
+    }
 }
