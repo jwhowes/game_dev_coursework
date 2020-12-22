@@ -15,6 +15,8 @@ public class FloaterController : MonoBehaviour{
 
     public FlyingNavMesh navmesh;
 
+    public LayerMask layerMask;
+
     [System.NonSerialized] public List<Vector3> path;
     private float timer;
     void Start(){
@@ -25,24 +27,26 @@ public class FloaterController : MonoBehaviour{
     void OnTriggerStay(Collider other){
         rb.AddForce((transform.position - other.ClosestPoint(transform.position)).normalized * speed, ForceMode.Acceleration);
     }
+    bool CanSeeTarget(){
+        RaycastHit hitInfo = new RaycastHit();
+        return Physics.Raycast(new Ray(transform.position, (target.position - transform.position).normalized), out hitInfo, 500f, layerMask) && hitInfo.collider.tag == "Player";
+    }
     void FixedUpdate(){  // Keep experimenting with the timer (may need to mess with onPointTolerance, chaseDist, etc. but I feel like it could work).
-        if(path.Count > 0 && Vector3.Distance(transform.position, path[0]) <= onPointTolerance){
-            path.RemoveAt(0);
+        if (CanSeeTarget()){
+            path = new List<Vector3>();
+            rb.AddForce((target.position - transform.position).normalized * speed);
+        }else{
+            if (path.Count > 0 && Vector3.Distance(transform.position, path[0]) <= onPointTolerance){
+                path.RemoveAt(0);
+            }
+            if (path.Count > 0){
+                // Potentially remove target from path and say if path is empty go towards target (so it doesn't go to player's old pos)
+                // This would probably only make a difference if the timer is used (as is, if path is empty then we generate a new one immediately)
+                rb.AddForce((path[0] - transform.position).normalized * speed);
+            }
+            else if (Vector3.Distance(transform.position, target.position) <= chaseDist){
+                navmesh.GetPath(this, transform.position, target.position);
+            }
         }
-        if(path.Count > 0){
-            // Potentially remove target from path and say if path is empty go towards target (so it doesn't go to player's old pos)
-            // This would probably only make a difference if the timer is used (as is, if path is empty then we generate a new one immediately)
-            rb.AddForce((path[0] - transform.position).normalized * speed);
-        }
-        else if(Vector3.Distance(transform.position, target.position) <= chaseDist){
-            navmesh.GetPath(this, transform.position, target.position);
-        }
-        /*if(timer <= 0 && Vector3.Distance(transform.position, target.position) <= chaseDist){
-            timer = recomputePathTimer;
-            navmesh.GetPath(this, transform.position, target.position);
-        }
-        if(timer > 0){  // If the player is out of range the timer doesn't reset so we don't want it to go too negative
-            timer -= Time.deltaTime;
-        }*/
     }
 }

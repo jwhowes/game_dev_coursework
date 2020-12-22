@@ -148,6 +148,9 @@ MonoBehaviour:
   recomputePathTimer: 5
   onPointTolerance: 6
   navmesh: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 40960
 --- !u!114 &6808603523850588921
 MonoBehaviour:
   m_ObjectHideFlags: 0

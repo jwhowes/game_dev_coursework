@@ -82,12 +82,14 @@ public class FlyingNavMesh : MonoBehaviour{
     }
     [SerializeField] private float width, height, depth;
     [SerializeField] private float voxelLength;
+    private Vector3 startPos;
     private Node[,,] nodes;
     [SerializeField] private LayerMask obstacles;
     [System.NonSerialized] public int numWidth, numHeight, numDepth;
     [SerializeField] LayerMask layerMask;
     
     void Start(){
+        startPos = transform.position;
         numWidth = (int)(width/voxelLength);
         numHeight = (int)(height/voxelLength);
         numDepth = (int)(depth/voxelLength);
@@ -103,13 +105,13 @@ public class FlyingNavMesh : MonoBehaviour{
         }
     }
     public Vector3 VoxelToWorld(int x, int y, int z){
-        return (new Vector3(x, y, z) - new Vector3(numWidth, numHeight, numDepth)/2) * voxelLength/2;
+        return ((new Vector3(x, y, z) - new Vector3(numWidth, numHeight, numDepth)/2) * voxelLength/2) + startPos;
     }
     private Vector3 VoxelToWorld(Vector3 v){
         return VoxelToWorld((int)v.x, (int)v.y, (int)v.z);
     }
     public Vector3 WorldToVoxel(Vector3 worldPos){
-        Vector3 ret = (worldPos * 2/voxelLength) + new Vector3(numWidth, numHeight, numDepth)/2;
+        Vector3 ret = ((worldPos - startPos) * 2/voxelLength) + new Vector3(numWidth, numHeight, numDepth)/2;
         return new Vector3(Mathf.Floor(ret.x), Mathf.Floor(ret.y), Mathf.Floor(ret.z));
     }
     private Node WorldToNode(Vector3 pos){
@@ -121,6 +123,38 @@ public class FlyingNavMesh : MonoBehaviour{
             floater.path = FindPath(start, target);
         };
         thread.Invoke();
+    }
+    bool WithinBounds(Vector3 point){
+        if (point.x < nodes[0, 0, 0].pos.x || point.y < nodes[0, 0, 0].pos.y || point.z < nodes[0, 0, 0].pos.z){
+            return false;
+        }
+        if (point.x > nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.x || point.y > nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.y || point.z > nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.z)
+        {
+            return false;
+        }
+        return true;
+    }
+    Vector3 PlaceWithinBounds(Vector3 point) {
+        Vector3 ret = point;
+        if (point.x < nodes[0, 0, 0].pos.x) {
+            ret.x = nodes[0, 0, 0].pos.x;
+        }
+        if(point.y < nodes[0, 0, 0].pos.y){
+            ret.y = nodes[0, 0, 0].pos.y;
+        }
+        if(point.z < nodes[0, 0, 0].pos.z){
+            ret.z = nodes[0, 0, 0].pos.z;
+        }
+        if(point.x > nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.x){
+            ret.x = nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.x;
+        }
+        if(point.y > nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.y){
+            ret.y = nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.y;
+        }
+        if(point.z > nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.z){
+            ret.z = nodes[numWidth - 1, numHeight - 1, numDepth - 1].pos.z;
+        }
+        return ret;
     }
     List<Vector3> FindPath(Vector3 start, Vector3 target){
         for(int x = 0; x < numWidth; x++){
@@ -137,7 +171,11 @@ public class FlyingNavMesh : MonoBehaviour{
         HashSet<Node> explored = new HashSet<Node>();
         RaycastHit hitInfo = new RaycastHit();
         path.Add(target);
-        fringe.Enqueue(WorldToNode(start));
+        if (!WithinBounds(start) || !WithinBounds(target)){
+            target = PlaceWithinBounds(target);
+            Debug.Log("Player out of bounds");
+        }
+        fringe.Enqueue(WorldToNode(PlaceWithinBounds(start)));
         while(fringe.Count() > 0){
             Node curr = fringe.Dequeue();
             explored.Add(curr);
@@ -183,5 +221,10 @@ public class FlyingNavMesh : MonoBehaviour{
             }
         }
         return neighbours;
+    }
+    void OnTriggerEnter(Collider other){
+        if(other.GetComponent<FloaterController>() != null){
+            other.GetComponent<FloaterController>().navmesh = this;
+        }
     }
 }

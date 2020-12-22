@@ -18,9 +18,6 @@ public class BattleArena : MonoBehaviour{
                 GameManager.instance.arena = this;
                 Activate();
             }
-            if (dead){
-                Debug.Log("I'm dead!");
-            }
         }
     }
 }
