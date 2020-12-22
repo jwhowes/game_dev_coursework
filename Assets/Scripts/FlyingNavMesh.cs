@@ -119,8 +119,10 @@ public class FlyingNavMesh : MonoBehaviour{
         return nodes[(int)v.x, (int)v.y, (int)v.z];
     }
     public void GetPath(FloaterController floater, Vector3 start, Vector3 target){
+        floater.retrieving = true;
         ThreadStart thread = delegate {  // Path calculations are performed in a separate thread to improve performance
             floater.path = FindPath(start, target);
+            floater.retrieving = false;
         };
         thread.Invoke();
     }
@@ -176,11 +178,12 @@ public class FlyingNavMesh : MonoBehaviour{
             Debug.Log("Player out of bounds");
         }
         fringe.Enqueue(WorldToNode(PlaceWithinBounds(start)));
-        while(fringe.Count() > 0){
+        while (fringe.Count() > 0) {
             Node curr = fringe.Dequeue();
             explored.Add(curr);
-            if(curr.dist_to_target < voxelLength || (Physics.Raycast(curr.pos, (target - curr.pos).normalized, out hitInfo, layerMask) && hitInfo.collider.tag == "Player")){
-                // If current point is close enough to target or can see target from current point then return the path. Results in potentially inoptimal paths but executes faster
+            if (curr.dist_to_target < voxelLength || (curr.dist_to_target < 10*voxelLength && Physics.Raycast(curr.pos, (target - curr.pos).normalized, out hitInfo, layerMask) && hitInfo.collider.tag == "Player")){
+                // If current pos is in player's voxel or within 10 voxels and can see player then return current path.`
+                // This doesn't produce the optimum path but it is efficient
                 while(curr != null){
                     path.Insert(0, curr.pos);
                     curr = curr.prev;

@@ -17,9 +17,12 @@ public class FloaterController : MonoBehaviour{
 
     public LayerMask layerMask;
 
+    [System.NonSerialized] public bool retrieving;
+
     [System.NonSerialized] public List<Vector3> path;
     private float timer;
     void Start(){
+        retrieving = false;
         target = PlayerManager.instance.player.transform;
         path =  new List<Vector3>();
         timer = Random.Range(0, recomputePathTimer);  // Timer begins at a random value to avoid all floaters recomputing at once
@@ -44,7 +47,7 @@ public class FloaterController : MonoBehaviour{
                 // This would probably only make a difference if the timer is used (as is, if path is empty then we generate a new one immediately)
                 rb.AddForce((path[0] - transform.position).normalized * speed);
             }
-            else if (Vector3.Distance(transform.position, target.position) <= chaseDist){
+            else if (!retrieving && Vector3.Distance(transform.position, target.position) <= chaseDist){
                 navmesh.GetPath(this, transform.position, target.position);
             }
         }
