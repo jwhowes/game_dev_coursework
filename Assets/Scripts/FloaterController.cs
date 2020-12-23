@@ -28,7 +28,10 @@ public class FloaterController : MonoBehaviour{
         timer = Random.Range(0, recomputePathTimer);  // Timer begins at a random value to avoid all floaters recomputing at once
     }
     void OnTriggerStay(Collider other){
-        rb.AddForce((transform.position - other.ClosestPoint(transform.position)).normalized * speed, ForceMode.Acceleration);
+        if(other.gameObject.layer == 15){
+            Debug.Log(other.name);
+            rb.AddForce((transform.position - other.ClosestPoint(transform.position)).normalized * speed, ForceMode.Acceleration);
+        }
     }
     bool CanSeeTarget(){
         RaycastHit hitInfo = new RaycastHit();

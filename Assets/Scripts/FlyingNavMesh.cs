@@ -103,6 +103,7 @@ public class FlyingNavMesh : MonoBehaviour{
                 }
             }
         }
+        GetComponent<BoxCollider>().size = new Vector3((width / 2) - voxelLength, (height / 2) - voxelLength, (depth / 2) - voxelLength);
     }
     public Vector3 VoxelToWorld(int x, int y, int z){
         return ((new Vector3(x, y, z) - new Vector3(numWidth, numHeight, numDepth)/2) * voxelLength/2) + startPos;
@@ -173,11 +174,13 @@ public class FlyingNavMesh : MonoBehaviour{
         HashSet<Node> explored = new HashSet<Node>();
         RaycastHit hitInfo = new RaycastHit();
         path.Add(target);
-        if (!WithinBounds(start) || !WithinBounds(target)){
+        if (!WithinBounds(target)){
             target = PlaceWithinBounds(target);
-            Debug.Log("Player out of bounds");
         }
-        fringe.Enqueue(WorldToNode(PlaceWithinBounds(start)));
+        if (!WithinBounds(start)){
+            start = PlaceWithinBounds(start);
+        }
+        fringe.Enqueue(WorldToNode(start));
         while (fringe.Count() > 0) {
             Node curr = fringe.Dequeue();
             explored.Add(curr);
@@ -188,6 +191,11 @@ public class FlyingNavMesh : MonoBehaviour{
                     path.Insert(0, curr.pos);
                     curr = curr.prev;
                 }
+                foreach(Vector3 v in path)
+                {
+                    Debug.Log(v);
+                }
+                Debug.Break();
                 return path;
             }
             foreach(Node v in Neighbours(curr)){
