@@ -29,7 +29,6 @@ public class FloaterController : MonoBehaviour{
     }
     void OnTriggerStay(Collider other){
         if(other.gameObject.layer == 15){
-            Debug.Log(other.name);
             rb.AddForce((transform.position - other.ClosestPoint(transform.position)).normalized * speed, ForceMode.Acceleration);
         }
     }

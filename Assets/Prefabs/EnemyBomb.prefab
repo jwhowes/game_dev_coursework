@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1697a91a35512a4eb361a3dd42eef59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+  explosionEffect: {fileID: 5430086705968919710, guid: 8cef48591f668d048b2388dc685416c8,
+    type: 3}
   blastRadius: 10
   playerHealth: {fileID: 6577910323547577290, guid: c41f5bc46b87f2d4c9baaeec5ab11685,
     type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8403906378053420907}
   - component: {fileID: 8403906378053420904}
   - component: {fileID: 8347920617631332875}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FlyingNavMesh
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}

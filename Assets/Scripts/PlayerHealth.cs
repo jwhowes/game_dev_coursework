@@ -13,6 +13,11 @@ public class PlayerHealth : CharacterHealth{
         healthBar.maxValue = baseHealth;
         healthBar.value = baseHealth;
     }
+    void FixedUpdate(){
+        if(transform.position.y <= -50){
+            Die();
+        }
+    }
     override public void Die(){
         GameManager.instance.PlayerDeath();
     }

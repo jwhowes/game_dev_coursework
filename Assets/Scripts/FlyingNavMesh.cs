@@ -160,7 +160,19 @@ public class FlyingNavMesh : MonoBehaviour{
         return ret;
     }
     List<Vector3> FindPath(Vector3 start, Vector3 target){
-        for(int x = 0; x < numWidth; x++){
+        Heap fringe = new Heap(numWidth * numHeight * numDepth);
+        List<Vector3> path = new List<Vector3>();
+        HashSet<Node> explored = new HashSet<Node>();
+        RaycastHit hitInfo = new RaycastHit();
+        path.Add(target);
+        if (!WithinBounds(target)){
+            target = PlaceWithinBounds(target);
+            path.Add(target);
+        }
+        if (!WithinBounds(start)){
+            start = PlaceWithinBounds(start);
+        }
+        for (int x = 0; x < numWidth; x++){
             for(int y = 0; y < numHeight; y++){
                 for(int z = 0; z < numDepth; z++){
                     nodes[x, y, z].path_cost = 0;
@@ -168,17 +180,6 @@ public class FlyingNavMesh : MonoBehaviour{
                     nodes[x, y, z].prev = null;
                 }
             }
-        }
-        Heap fringe = new Heap(numWidth*numHeight*numDepth);
-        List<Vector3> path = new List<Vector3>();
-        HashSet<Node> explored = new HashSet<Node>();
-        RaycastHit hitInfo = new RaycastHit();
-        path.Add(target);
-        if (!WithinBounds(target)){
-            target = PlaceWithinBounds(target);
-        }
-        if (!WithinBounds(start)){
-            start = PlaceWithinBounds(start);
         }
         fringe.Enqueue(WorldToNode(start));
         while (fringe.Count() > 0) {
@@ -191,11 +192,6 @@ public class FlyingNavMesh : MonoBehaviour{
                     path.Insert(0, curr.pos);
                     curr = curr.prev;
                 }
-                foreach(Vector3 v in path)
-                {
-                    Debug.Log(v);
-                }
-                Debug.Break();
                 return path;
             }
             foreach(Node v in Neighbours(curr)){

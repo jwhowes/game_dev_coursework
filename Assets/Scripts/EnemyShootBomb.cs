@@ -23,8 +23,8 @@ public class EnemyShootBomb : MonoBehaviour{
         bombInfo.damage = damage;
         cloneBomb.GetComponent<Rigidbody>().AddForce((aimTarget - transform.position).normalized * shootForce);
     }
-    protected bool CanSeeTarget(){
-        RaycastHit hitInfo;
-        return Physics.Raycast(transform.position, (target.position - transform.position).normalized, out hitInfo, hitLayerMask) && hitInfo.collider.gameObject.tag == "Player";
+    protected bool CanSeeTarget() {
+        RaycastHit hitInfo = new RaycastHit();
+        return Physics.Raycast(new Ray(transform.position, (target.position - transform.position).normalized), out hitInfo, 300f, hitLayerMask) && hitInfo.collider.tag == "Player";
     }
 }
