@@ -5,7 +5,9 @@ using UnityEngine;
 public class BattleArena : MonoBehaviour{
     public EnemySpawnPoint[] enemySpawnPoints;
 
-    public bool dead = false;
+    public GameObject[] endObjects;
+
+    bool dead = false;
 
     public void Activate() {
         foreach (EnemySpawnPoint esp in enemySpawnPoints) {
@@ -18,6 +20,12 @@ public class BattleArena : MonoBehaviour{
                 GameManager.instance.arena = this;
                 Activate();
             }
+        }
+    }
+    public void Kill(){
+        dead = true;
+        foreach(GameObject go in endObjects){
+            go.SetActive(!go.activeSelf);
         }
     }
 }

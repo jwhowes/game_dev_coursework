@@ -18818,6 +18818,11 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3529545477831798678, guid: cfa14249f38031c48ab768254d892725,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6247906423955508039, guid: cfa14249f38031c48ab768254d892725,
         type: 3}
       propertyPath: m_LocalPosition.x
