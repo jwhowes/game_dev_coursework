@@ -12,6 +12,7 @@ public class PlayerHealth : CharacterHealth{
         base.Start();
         healthBar.maxValue = baseHealth;
         healthBar.value = baseHealth;
+        spawnPoint = transform.position;
     }
     void FixedUpdate(){
         if(transform.position.y <= -50){
