@@ -58,8 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
-    <Compile Include="Assets\EndLevel.cs" />
-    <Compile Include="Assets\GiveDash.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
@@ -69,7 +67,6 @@
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\ParticleSystemMultiplier.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\SmokeParticles.cs" />
     <Compile Include="Assets\Imported\ParticleSystems\Scripts\WaterHoseParticles.cs" />
-    <Compile Include="Assets\KillExplosion.cs" />
     <Compile Include="Assets\Scripts\BattleArena.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\CharacterHealth.cs" />
@@ -79,6 +76,7 @@
     <Compile Include="Assets\Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\DialogueTrigger.cs" />
     <Compile Include="Assets\Scripts\DialogueUI.cs" />
+    <Compile Include="Assets\Scripts\EndLevel.cs" />
     <Compile Include="Assets\Scripts\EnemyBomb.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EnemyHealth.cs" />
@@ -90,11 +88,13 @@
     <Compile Include="Assets\Scripts\FlyerShoot.cs" />
     <Compile Include="Assets\Scripts\FlyingNavMesh.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GiveDash.cs" />
     <Compile Include="Assets\Scripts\Grapple.cs" />
     <Compile Include="Assets\Scripts\HUD.cs" />
     <Compile Include="Assets\Scripts\HealthPickup.cs" />
     <Compile Include="Assets\Scripts\JumpPad.cs" />
     <Compile Include="Assets\Scripts\KillBox.cs" />
+    <Compile Include="Assets\Scripts\KillExplosion.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />

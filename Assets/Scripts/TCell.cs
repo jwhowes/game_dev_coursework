@@ -11,6 +11,7 @@ public class TCell : MonoBehaviour{
     }
     public float lockonTime;  // Time taken to lock on
     public float coolDown;  // Time after firing before selecting next target
+    public float warmUpTime;
     public LayerMask targetLayerMask;
     public float range;
     public float damage;
@@ -24,19 +25,21 @@ public class TCell : MonoBehaviour{
     private float lockonCountdown;
     private float fireDelayCountdown;
     private float coolDownCountdown;
+    private float warmUpCountDown;
     void Start(){
         state = State.Scanning;
         lockonCountdown = lockonTime;
         coolDownCountdown = coolDown;
+        warmUpCountDown = warmUpTime;
         hitLayerMask = LayerMask.GetMask("Terrain") | targetLayerMask;
         line.SetPosition(0, transform.position);
     }
     
     void FixedUpdate(){
-        switch(state){
+        RaycastHit hitInfo;
+        switch (state){
             case State.Scanning: {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, range, targetLayerMask);
-                RaycastHit hitInfo;
                 foreach(Collider collider in colliders){
                     if(Physics.Raycast(transform.position, (collider.gameObject.transform.position - transform.position).normalized, out hitInfo, hitLayerMask) && hitInfo.collider.Equals(collider)){
                         target = collider.gameObject;
@@ -50,7 +53,6 @@ public class TCell : MonoBehaviour{
             case State.LockingOn: {
                 // Show some locking on effect
                 if(target != null){
-                    RaycastHit hitInfo;
                     if(Physics.Raycast(transform.position, (target.transform.position - transform.position).normalized, out hitInfo, hitLayerMask) && hitInfo.collider.gameObject.Equals(target)){
                         line.SetPosition(1, target.transform.position);
                         lockonCountdown -= Time.deltaTime;
@@ -72,12 +74,18 @@ public class TCell : MonoBehaviour{
                 break;
             }
             case State.Firing: {
-                // Set up laser line
-                line.startWidth = 0.2f;
-                line.endWidth = 0.2f;
-                target.GetComponent<CharacterHealth>().TakeDamage(damage);
-                target.GetComponent<Rigidbody>().AddForce((target.transform.position - transform.position).normalized * pushForce + Vector3.up * pushForce/2, ForceMode.Acceleration);
-                state = State.CoolingDown;
+                if (warmUpCountDown <= 0){
+                    line.startWidth = 0.2f;
+                    line.endWidth = 0.2f;
+                    warmUpCountDown = warmUpTime;
+                    if(Physics.Raycast(transform.position, (line.GetPosition(1) - transform.position).normalized, out hitInfo) && hitInfo.collider.gameObject.Equals(target)){
+                        target.GetComponent<CharacterHealth>().TakeDamage(damage);
+                        target.GetComponent<Rigidbody>().AddForce((target.transform.position - transform.position).normalized * pushForce + Vector3.up * pushForce / 2, ForceMode.Acceleration);
+                    }
+                    state = State.CoolingDown;
+                }else{
+                    warmUpCountDown -= Time.deltaTime;
+                }
                 break;
             }
             case State.CoolingDown: {
