@@ -21,12 +21,17 @@ public class TCell : MonoBehaviour{
     private State state;
     private GameObject target = null;
 
+    private Transform head;
+    private Transform lineBasePos;
+
     private LayerMask hitLayerMask;
     private float lockonCountdown;
     private float fireDelayCountdown;
     private float coolDownCountdown;
     private float warmUpCountDown;
     void Start(){
+        head = transform.GetChild(0).GetChild(0);
+        lineBasePos = head.GetChild(0);
         state = State.Scanning;
         lockonCountdown = lockonTime;
         coolDownCountdown = coolDown;
@@ -36,12 +41,13 @@ public class TCell : MonoBehaviour{
     }
     
     void FixedUpdate(){
-        RaycastHit hitInfo;
+        line.SetPosition(0, lineBasePos.position);
+        RaycastHit hitInfo = new RaycastHit();
         switch (state){
             case State.Scanning: {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, range, targetLayerMask);
                 foreach(Collider collider in colliders){
-                    if(Physics.Raycast(transform.position, (collider.gameObject.transform.position - transform.position).normalized, out hitInfo, hitLayerMask) && hitInfo.collider.Equals(collider)){
+                    if(Physics.Raycast(new Ray(transform.position, (collider.gameObject.transform.position - transform.position).normalized), out hitInfo, 300f, hitLayerMask) && hitInfo.collider.Equals(collider)){
                         target = collider.gameObject;
                         line.enabled = true;
                         state = State.LockingOn;
@@ -53,7 +59,8 @@ public class TCell : MonoBehaviour{
             case State.LockingOn: {
                 // Show some locking on effect
                 if(target != null){
-                    if(Physics.Raycast(transform.position, (target.transform.position - transform.position).normalized, out hitInfo, hitLayerMask) && hitInfo.collider.gameObject.Equals(target)){
+                    if(Physics.Raycast(new Ray(transform.position, (target.transform.position - transform.position).normalized), out hitInfo, 300f, hitLayerMask) && hitInfo.collider.gameObject.Equals(target)){
+                        head.rotation = Quaternion.Slerp(head.rotation, Quaternion.LookRotation((target.transform.position - transform.position).normalized), Time.deltaTime * 5f);
                         line.SetPosition(1, target.transform.position);
                         lockonCountdown -= Time.deltaTime;
                         if(lockonCountdown <= 0){
@@ -74,6 +81,7 @@ public class TCell : MonoBehaviour{
                 break;
             }
             case State.Firing: {
+                head.rotation = Quaternion.Slerp(head.rotation, Quaternion.LookRotation((line.GetPosition(1) - transform.position).normalized), Time.deltaTime * 5f);
                 if (warmUpCountDown <= 0){
                     line.startWidth = 0.2f;
                     line.endWidth = 0.2f;
