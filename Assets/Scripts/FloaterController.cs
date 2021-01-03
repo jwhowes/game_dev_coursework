@@ -6,7 +6,10 @@ using UnityEngine;
 public class FloaterController : MonoBehaviour{
     public Transform target;  // The target to chase
     public Rigidbody rb;
-    public float speed;
+
+    public float easySpeed;
+    public float mediumSpeed;
+    public float hardSpeed;
 
     public float chaseDist;  // The distance at which the floater chases the target
     public float recomputePathTimer;  // The period of time in between path recomputations
@@ -21,7 +24,21 @@ public class FloaterController : MonoBehaviour{
 
     [System.NonSerialized] public List<Vector3> path;
     private float timer;
+
+    private float speed;
+
     void Start(){
+        switch (GameManager.instance.difficulty){
+            case 0:
+                speed = easySpeed;
+                break;
+            case 1:
+                speed = mediumSpeed;
+                break;
+            case 2:
+                speed = hardSpeed; 
+                break;
+        }
         retrieving = false;
         target = PlayerManager.instance.player.transform;
         path =  new List<Vector3>();

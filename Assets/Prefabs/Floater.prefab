@@ -143,7 +143,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   rb: {fileID: 5177799138281047244}
-  speed: 60
+  easySpeed: 40
+  mediumSpeed: 60
+  hardSpeed: 80
   chaseDist: 1000
   recomputePathTimer: 5
   onPointTolerance: 6
@@ -191,6 +193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 50
+  easyHealth: 30
+  mediumHealth: 50
+  hardHealth: 70
   drop: {fileID: 2209255118275310662, guid: eea4f142ca36d4e4fb95a215e0120379, type: 3}
   maxDrops: 5
 --- !u!135 &7788825815956054321

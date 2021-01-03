@@ -177,6 +177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 20
+  easyHealth: 10
+  mediumHealth: 20
+  hardHealth: 30
   drop: {fileID: 2209255118275310662, guid: eea4f142ca36d4e4fb95a215e0120379, type: 3}
   maxDrops: 1
 --- !u!1001 &2137187996003677947

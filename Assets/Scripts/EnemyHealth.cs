@@ -3,6 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : CharacterHealth{
+    public float easyHealth;
+    public float mediumHealth;
+    public float hardHealth;
+    void Start(){
+        switch (GameManager.instance.difficulty){
+            case 0:
+                baseHealth = easyHealth;
+                break;
+            case 1:
+                baseHealth = mediumHealth;
+                break;
+            case 2:
+                baseHealth = hardHealth;
+                break;
+        }
+        base.Start();
+    }
+
     public GameObject drop;
     public int maxDrops;
     public override void Die() {
