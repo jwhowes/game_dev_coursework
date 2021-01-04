@@ -20,10 +20,10 @@ public class ShootPoisonBomb : MonoBehaviour{
 
     void Update(){
         RaycastHit hitInfo;
-        if(Physics.Raycast(transform.position, (target.position - transform.position).normalized, out hitInfo, hitLayerMask) && hitInfo.collider.gameObject.tag == "Player" && countdown <= 0){
+        if(Physics.Raycast(new Ray(transform.position, (target.position - transform.position).normalized), out hitInfo, 300f, hitLayerMask) && hitInfo.collider.tag == "Player" && countdown <= 0){
             countdown = fireRate;
             Vector3 aimTarget = target.GetChild(2).position;
-            GameObject cloneBomb = Instantiate(bomb, transform.position + (target.position - transform.position).normalized, Quaternion.LookRotation(aimTarget));
+            GameObject cloneBomb = Instantiate(bomb, transform.position + (target.position - transform.position).normalized, Quaternion.LookRotation(aimTarget - transform.position));
             cloneBomb.GetComponent<PoisonBomb>().blastRadius = blastRadius;
             cloneBomb.GetComponent<Rigidbody>().AddForce((aimTarget - transform.position).normalized * shootForce);
         }
