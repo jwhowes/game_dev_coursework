@@ -7,6 +7,7 @@ public class MeleeAttack : MonoBehaviour{
     public float damage;
     public float damageTimer;
     public float damageDistance;
+    public AudioSource biteSound;
 
     private CharacterHealth targetHealth;
     private float countdown;
@@ -18,6 +19,9 @@ public class MeleeAttack : MonoBehaviour{
 
     void Update(){
         if(Vector3.Distance(target.position, transform.position) <= damageDistance && countdown <= 0){
+            if (!biteSound.isPlaying){
+                biteSound.Play();
+            }
             countdown = damageTimer;
             targetHealth.TakeDamage(damage);
         }

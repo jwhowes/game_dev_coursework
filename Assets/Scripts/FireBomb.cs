@@ -7,10 +7,13 @@ public class FireBomb : MonoBehaviour
     public float fireRate = 1f;
     public GameObject bomb;
     public float shootForce = 2000f;
+    public AudioSource shootSound;
+
     private float countdown;
 
     void Update(){
         if(Input.GetButton("Fire1") && countdown <= 0){
+            shootSound.Play();
             countdown = fireRate;
             GameObject cloneBomb = Instantiate(bomb, transform.position + transform.forward, transform.rotation);
             cloneBomb.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce);

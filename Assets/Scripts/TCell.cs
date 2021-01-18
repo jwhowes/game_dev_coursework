@@ -17,6 +17,7 @@ public class TCell : MonoBehaviour{
     public float damage;
     public LineRenderer line;
     public float pushForce;
+    public AudioSource shootSound;
     
     private State state;
     private GameObject target = null;
@@ -86,7 +87,8 @@ public class TCell : MonoBehaviour{
                     line.startWidth = 0.2f;
                     line.endWidth = 0.2f;
                     warmUpCountDown = warmUpTime;
-                    if(Physics.Raycast(transform.position, (line.GetPosition(1) - transform.position).normalized, out hitInfo) && hitInfo.collider.gameObject.Equals(target)){
+                    shootSound.Play();
+                    if (Physics.Raycast(transform.position, (line.GetPosition(1) - transform.position).normalized, out hitInfo) && hitInfo.collider.gameObject.Equals(target)){
                         target.GetComponent<CharacterHealth>().TakeDamage(damage);
                         target.GetComponent<Rigidbody>().AddForce((target.transform.position - transform.position).normalized * pushForce + Vector3.up * pushForce / 2, ForceMode.Acceleration);
                     }
