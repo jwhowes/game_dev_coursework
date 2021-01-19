@@ -17,11 +17,17 @@ public class EnemyShootBomb : MonoBehaviour{
 
     protected void Shoot(){
         Vector3 aimTarget = target.GetChild(2).position;
-        GameObject cloneBomb = Instantiate(bomb, transform.position + (target.position - transform.position).normalized, Quaternion.LookRotation(aimTarget - transform.position));
+        Vector3 aimNoise = new Vector3(
+            Random.Range(-1, 1),
+            Random.Range(-1, 1),
+            Random.Range(-1, 1)
+            );
+        Vector3 shootDirection = (Quaternion.Euler(aimNoise) * (aimTarget - transform.position)).normalized;
+        GameObject cloneBomb = Instantiate(bomb, transform.position + (target.position - transform.position).normalized, Quaternion.LookRotation(shootDirection));
         EnemyBomb bombInfo = cloneBomb.GetComponent<EnemyBomb>();
         bombInfo.blastRadius = blastRadius;
         bombInfo.damage = damage;
-        cloneBomb.GetComponent<Rigidbody>().AddForce((aimTarget - transform.position).normalized * shootForce);
+        cloneBomb.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce);
     }
     protected bool CanSeeTarget() {
         RaycastHit hitInfo = new RaycastHit();

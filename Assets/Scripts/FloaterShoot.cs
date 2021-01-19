@@ -11,6 +11,8 @@ public class FloaterShoot : EnemyShootBomb{
     public float spawnMinTimer;
     public GameObject smallFloater;
 
+    public AudioSource mainShootSound;
+
     private float spawnTimer;
     private float mainCountdown = 0;
     private float subCountdown = 0;
@@ -29,6 +31,7 @@ public class FloaterShoot : EnemyShootBomb{
             }
         }
         if(firingSub && subFired < subProjectiles && subCountdown <= 0){
+            mainShootSound.Play();
             subCountdown = subFireRate;
             subFired += 1;
             Shoot();
