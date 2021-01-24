@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour{
         GameManager.instance.DialogueCanvas.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Time.timeScale = 0;
+        PlayerManager.instance.player.GetComponentInChildren<FireBomb>().canShoot = false;
         NextSentence();
     }
     public void NextSentence(){
@@ -30,5 +31,6 @@ public class DialogueManager : MonoBehaviour{
         GameManager.instance.DialogueCanvas.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
+        PlayerManager.instance.player.GetComponentInChildren<FireBomb>().canShoot = true;
     }
 }

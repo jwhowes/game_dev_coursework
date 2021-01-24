@@ -9,6 +9,10 @@ public class Grapple : MonoBehaviour{
     public GameObject player;
     public LayerMask layerMask;
 
+    public Transform startPoint;
+
+    public Animation recoil;
+
     private Transform dynamicTarget;
 
     private bool hitStatic;
@@ -25,10 +29,13 @@ public class Grapple : MonoBehaviour{
     void Update(){
         hasGrapple = hasGrapple || pm.isGrounded;
         if(Input.GetButtonDown("Fire2") && hasGrapple){
-            Shoot();
+            if (Shoot()) {
+                recoil.Play("Grapple");
+            }
         }
         if(Input.GetButton("Fire2") && (hitStatic || hitDynamic)){
-            line.SetPosition(0, transform.position - new Vector3(0f, 1f, 0f));
+            line.SetPosition(0, startPoint.position);
+            //line.SetPosition(0, transform.position - new Vector3(0f, 1f, 0f));
             if (hitDynamic){
                 line.SetPosition(1, dynamicTarget.position);
             }
@@ -38,7 +45,7 @@ public class Grapple : MonoBehaviour{
             Destroy(joint);
         }
     }
-    void Shoot(){
+    bool Shoot(){
         RaycastHit hitInfo;  // Stores the result of the Raycast
         if(Physics.Raycast(transform.position, transform.forward, out hitInfo, range, layerMask)){
             if(hitInfo.collider.tag == "FloatingGrapplePoint"){
@@ -61,9 +68,11 @@ public class Grapple : MonoBehaviour{
             joint.massScale = 1f;
 
             line.enabled = true;
+            return true;
         } else{
             hitStatic = false;
             hitDynamic = false;
+            return false;
         }
     }
 }
