@@ -19,3 +19,10 @@ Use of multimedia:
 		- Could add foliage and do some billboaring
 	- Self-made complex scene objects (with a the unity library thingy)
 		- i.e. stairs, arches, whatever else I do
+
+Game Interaction:
+	- Controls (WASD, dashes, grapple hook, movement)
+	- Brief mention of AI (in the context of passive interaction)
+		- Give a general overview of an abstract controller in this games
+		- Talk about shooting
+	- Jump pads
